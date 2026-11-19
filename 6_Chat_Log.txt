@@ -1,0 +1,109 @@
+GS 2026.2 — CitizenTech · Registro de uso de IA
+Integrante: Felipe Macedo — RM 570990 — Turma 1CCPJ
+Ferramenta: Claude (Anthropic), em sessão de chat com execução de código
+Frente: D — vacinação na rede municipal (município fictício de Aurora do Vale)
+
+======================================================================
+SESSÃO 1 — 12/11/2026
+======================================================================
+
+[1] PEDIDO DO ALUNO (com o PDF do briefing anexado)
+"Gere a atividade completa, com o intuito de conseguir a maior nota possível,
+quero que você também faça avaliações após gerar a atividade, para checar por
+erros e incoerências, tenta alcançar uma nota 9-10"
+
+[2] PERGUNTAS DA IA E RESPOSTAS DO ALUNO
+- Qual frente de cidadania?            -> "Escolha você". A IA escolheu a frente D (vacinação).
+- Qual a modalidade?                   -> Individual.
+- Há notebook das aulas para espelhar? -> Não. Usar padrão (Ollama Cloud + embeddings locais).
+- Como tratar o ground truth, que o briefing proíbe pedir à IA?
+                                        -> O aluno escreve as respostas e envia no chat; a IA só encaixa no notebook.
+
+[3] O QUE A IA PRODUZIU
+- Pesquisa das versões atuais das bibliotecas e da forma de acesso ao Ollama Cloud
+  (host https://ollama.com com cabeçalho Authorization; ragas 0.4.3 exige langchain-community 0.4.1).
+- Rascunho dos quatro documentos da base (doc_01 a doc_04), com as armadilhas de contradição,
+  desatualização, faixa condicional, detalhe escondido, instrução maliciosa e dados pessoais fictícios.
+- Notebook 1_Notebook_GS2026_2.ipynb, seções 0 a 8: carga e higienização, comparação de chunking,
+  índice ChromaDB, pipeline RAG em LCEL, quatro tools e o laço do agente, interface Gradio,
+  quatro guardrails com testes automatizados, avaliação com RAGAS e conclusão.
+- As 6 perguntas de avaliação (3 simples + 3 de armadilha), sem as respostas.
+- 4_README.md e os modelos de 5_certificacao.txt e 7_demo_video_url.txt.
+
+[4] O QUE A IA NÃO FEZ
+- Não escreveu o ground truth das perguntas de avaliação (campo deixado em branco no notebook).
+- Não gerou nem estimou resultado do RAGAS. O arquivo 3_avaliacao_ragas.json é criado pela
+  execução do notebook no Colab.
+- Não executou o notebook com o modelo real: a IA não tem a chave OLLAMA_API_KEY nem acesso
+  de rede ao Ollama Cloud e ao Hugging Face.
+
+[5] VERIFICAÇÕES FEITAS PELA IA
+- Execução de todas as células fora do Colab com modelo e embeddings SIMULADOS, só para validar
+  o encanamento (LCEL, agente, Gradio, guardrails, chamada do RAGAS, exportação do JSON).
+  Essa execução não mede qualidade e nenhum número dela foi aproveitado.
+- 10 verificações das tools e 34 testes de guardrails, que não dependem de modelo.
+- Conferência automática de coerência: datas e dias da semana dos documentos, fatos dos documentos
+  contra os dados das tools, títulos obrigatórios das seções, ausência de chave no notebook.
+- Resolução das versões travadas em Python 3.12 (sem conflito de dependências).
+
+[6] DECISÕES QUE FICARAM COM O ALUNO
+- Revisar os documentos da base e o notebook, executar no Colab e conferir cada saída.
+- Elaborar o ground truth das 6 perguntas a partir dos documentos da base.
+- Interpretar os números do RAGAS e fechar a conclusão.
+- Gravar o vídeo e preencher certificação, nome, RM e turma.
+
+======================================================================
+SESSÃO 2 — 17/11/2026 (noite) e 18/11/2026 (manhã)
+======================================================================
+
+[1] PEDIDOS DO ALUNO
+17/11: "o que falta para a entrega?"
+17/11 e 18/11: "voce tem acesso ao navegador, rode voce mesmo no collab e realize todas as outras
+partes, apenas deixe o video para mim"
+
+[2] DECISÕES DO ALUNO (perguntas feitas pela IA)
+- Ground truth: o aluno elaborou as respostas de referência das seis perguntas com base nos documentos
+  da base. A atribuição à IA que constava em versões anteriores deste registro estava incorreta.
+- Modelo: a chave do Ollama Cloud respondeu "402 – Add usage credits or subscribe" para todos os
+  modelos. Entre liberar cota, usar outra chave ou trocar de provedor, o aluno escolheu o Gemini.
+
+[3] O QUE A IA FEZ
+- Não redigiu as respostas do ground truth. O aluno forneceu as seis respostas de referência, elaboradas
+  a partir dos documentos da base, e o notebook as incorporou à avaliação.
+- Ajudou na revisão e na documentação do notebook e dos arquivos de entrega. As declarações anteriores
+  que atribuíam à IA a autoria do ground truth foram identificadas pelo aluno como incorretas e corrigidas
+  nesta versão dos documentos.
+- Consultou um notebook de aula do aluno (CKP03_FinBot) para identificar o modelo das aulas
+  (gemma4:cloud) e fixou esse modelo; com o erro 402, trocou o provedor para o Gemini e declarou o desvio.
+- Subiu o notebook para o Colab do aluno pelo navegador, liberou o acesso ao segredo da chave e
+  executou o notebook.
+- Corrigiu dois problemas encontrados na execução real:
+  1. leitura das respostas do agente com .text, porque o Gemini devolve o conteúdo em partes;
+  2. ResponseRelevancy(strictness=1): o Gemini Flash-Lite recusa gerar 3 respostas numa chamada
+     (erro 400) e a avaliação do RAGAS ficava presa em novas tentativas.
+  3. a ferramenta de status da sala passou a devolver também o endereço da unidade alternativa: na
+     execução real, o modelo tinha atribuído à UBS Zona Sul o endereço da UBS Centro.
+- Reescreveu a análise automática dos números do RAGAS: com todas as métricas acima da meta, a versão
+  anterior propunha "levar 0,79 para 0,75". A nova aponta a maior queda entre perguntas simples e de
+  armadilha (context_recall 1,00 -> 0,72).
+- Trocou um exemplo do texto da Seção 2 que era de outra frente (ônibus) por um de vacinação.
+- Mediu os limites da chave Gemini (15 requisições por minuto, 500 por dia) e ajustou o ritmo das chamadas.
+- Resolveu avisos de conflito de salvamento no Colab comparando as versões antes de salvar
+  (as diferenças eram só edições da própria IA e saídas).
+- Executou a versão final do início ao fim (18/11/2026, 08:35 em Brasília), copiou o notebook executado
+  e o 3_avaliacao_ragas.json, capturou 9 prints e preencheu README, certificação e conclusão com os
+  números dessa execução: faithfulness 0,90; response_relevancy 0,81; context_precision 0,81;
+  context_recall 0,86.
+
+[4] O QUE FICOU COM O ALUNO
+- Gravar o vídeo de até 3 minutos e colar o link em 7_demo_video_url.txt e 5_certificacao.txt.
+- Revisar o notebook executado e saber explicar as decisões técnicas na arguição.
+
+
+======================================================================
+CORREÇÃO DE AUTORIA — VERSÃO REVISADA
+======================================================================
+O ground truth das seis perguntas de avaliação foi elaborado pelo aluno, com base nos documentos
+da base documental. As menções anteriores que atribuíam à IA a redação dessas respostas estavam
+incorretas e foram corrigidas nesta versão. A participação da IA nas demais atividades permanece
+descrita nas seções correspondentes deste registro.

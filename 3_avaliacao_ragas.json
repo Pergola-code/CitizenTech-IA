@@ -1,0 +1,174 @@
+{
+  "gerado_em": "2026-11-18T11:35:07",
+  "observacao": "Valores medidos pela execução deste notebook. Métricas com null não puderam ser calculadas pelo juiz.",
+  "configuracao": {
+    "modelo_gerador": "gemini-3.1-flash-lite",
+    "modelo_juiz": "gemini-3.1-flash-lite",
+    "embeddings": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "chunking": {
+      "estrategia": "A (500/80)",
+      "chunk_size": 500,
+      "chunk_overlap": 80,
+      "n_chunks": 25
+    },
+    "k": 4,
+    "limiar_distancia": 0.5296,
+    "data_de_referencia": "2026-11-17T17:10",
+    "versoes": {
+      "ragas": "0.4.3",
+      "langchain-core": "1.8.0",
+      "langchain-google-genai": "4.5.0",
+      "langchain-chroma": "1.1.0",
+      "chromadb": "1.5.9"
+    }
+  },
+  "metas": {
+    "faithfulness": 0.8,
+    "response_relevancy": 0.75,
+    "context_precision": 0.7,
+    "context_recall": 0.7
+  },
+  "medias": {
+    "faithfulness": 0.897,
+    "response_relevancy": 0.807,
+    "context_precision": 0.806,
+    "context_recall": 0.861
+  },
+  "medias_por_nivel": {
+    "nivel_1": {
+      "faithfulness": 0.905,
+      "response_relevancy": 0.791,
+      "context_precision": 0.833,
+      "context_recall": 1
+    },
+    "nivel_2": {
+      "faithfulness": 0.889,
+      "response_relevancy": 0.823,
+      "context_precision": 0.778,
+      "context_recall": 0.722
+    }
+  },
+  "por_pergunta": [
+    {
+      "id": "P1",
+      "nivel": 1,
+      "pergunta": "Quais documentos preciso levar para me vacinar em uma UBS de Aurora do Vale?",
+      "resposta": "Para ser vacinado, você deve apresentar um documento oficial com foto e o Cartão SUS ou o número do seu CPF [doc_01]. A apresentação da caderneta de vacinação é recomendada, porém a sua ausência não impede a vacinação, caso em que a unidade emitirá uma segunda via [doc_01]. Caso você seja menor de 18 anos, deve estar acompanhado de um responsável legal [doc_01].",
+      "ground_truth": "Documento oficial com foto e o Cartão SUS ou o número do CPF. A caderneta de vacinação é recomendada, mas não é obrigatória: a dose é registrada no sistema e a unidade emite a segunda via. Menores de 18 anos precisam estar com o responsável legal.",
+      "fontes_recuperadas": [
+        "doc_01#01",
+        "doc_01#04",
+        "doc_04#01",
+        "doc_01#07"
+      ],
+      "fontes_citadas": [
+        "doc_01"
+      ],
+      "faithfulness": 0.714,
+      "response_relevancy": 0.782,
+      "context_precision": 0.5,
+      "context_recall": 1
+    },
+    {
+      "id": "P2",
+      "nivel": 1,
+      "pergunta": "Qual é a faixa etária da vacina contra a dengue e qual o intervalo entre as doses?",
+      "resposta": "A vacina contra a dengue é destinada a crianças e adolescentes de 10 anos completos até a véspera de completar 15 anos [doc_03]. O esquema consiste em duas doses, com intervalo de 90 dias entre elas [doc_03].",
+      "ground_truth": "A vacina da dengue é para crianças e adolescentes de 10 a 14 anos (de 10 anos completos até a véspera dos 15), em duas doses com intervalo de 90 dias, aplicada só na UBS Zona Norte e na UBS Zona Sul.",
+      "fontes_recuperadas": [
+        "doc_03#05",
+        "doc_01#06",
+        "doc_03#03",
+        "doc_03#02"
+      ],
+      "fontes_citadas": [
+        "doc_03"
+      ],
+      "faithfulness": 1,
+      "response_relevancy": 0.847,
+      "context_precision": 1,
+      "context_recall": 1
+    },
+    {
+      "id": "P3",
+      "nivel": 1,
+      "pergunta": "Minha avó é acamada. Ela pode ser vacinada em casa? Como faço o pedido?",
+      "resposta": "Sim, pessoas acamadas podem solicitar a vacinação em domicílio [doc_01]. O pedido deve ser realizado pela Central 156, opção 4 [doc_01]. Para o agendamento, é necessário apresentar uma declaração da equipe de Saúde da Família ou um laudo médico que comprove a condição de acamado [doc_01]. A visita da equipe ocorre em até 7 dias úteis após a solicitação [doc_01].",
+      "ground_truth": "Sim. Pessoas acamadas ou com mobilidade reduzida podem pedir vacinação em casa pela Central 156, opção 4. A visita é agendada em até 7 dias úteis e exige declaração da equipe de Saúde da Família ou laudo médico.",
+      "fontes_recuperadas": [
+        "doc_01#07",
+        "doc_01#04",
+        "doc_03#06",
+        "doc_01#05"
+      ],
+      "fontes_citadas": [
+        "doc_01"
+      ],
+      "faithfulness": 1,
+      "response_relevancy": 0.743,
+      "context_precision": 1,
+      "context_recall": 1
+    },
+    {
+      "id": "P4",
+      "nivel": 2,
+      "pergunta": "A sala de vacinação da UBS Centro está atendendo no dia 17/11/2026?",
+      "resposta": "Não, a sala de vacinação da UBS Centro está interditada de 09/11/2026 a 27/11/2026 para substituição da câmara fria [doc_02]. Nesse período, não há aplicação de vacinas na unidade, devendo os moradores da região central procurar a UBS Zona Sul [doc_02].",
+      "ground_truth": "Não. Embora a Portaria 12/2026 preveja funcionamento de segunda a sexta, o Comunicado 31/2026, mais recente, interditou a sala de vacinação da UBS Centro de 09/11 a 27/11/2026 para trocar a câmara fria. Nesse período a orientação é procurar a UBS Zona Sul; a reabertura está prevista para 30/11/2026.",
+      "fontes_recuperadas": [
+        "doc_02#03",
+        "doc_02#02",
+        "doc_02#04",
+        "doc_04#05"
+      ],
+      "fontes_citadas": [
+        "doc_02"
+      ],
+      "faithfulness": 1,
+      "response_relevancy": 0.804,
+      "context_precision": 1,
+      "context_recall": 0.667
+    },
+    {
+      "id": "P5",
+      "nivel": 2,
+      "pergunta": "Tenho 35 anos e não faço parte de nenhum grupo prioritário. Posso tomar a vacina da gripe no dia 17/11/2026?",
+      "resposta": "Sim, você pode tomar a vacina contra a Influenza. A regra anterior, que restringia a vacina apenas aos grupos prioritários, foi alterada pela Nota Técnica SMS nº 07/2026, que revogou a restrição do Art. 6º da Portaria SMS nº 12/2026 [doc_01], [doc_03]. Desde 09/11/2026, a vacina está disponível para toda a população a partir de 6 meses de idade, enquanto durarem os estoques [doc_03].",
+      "ground_truth": "Sim. A Portaria limitava a vacina da gripe aos grupos prioritários, mas a Nota Técnica 07/2026 ampliou a vacina, a partir de 09/11/2026, para toda a população a partir de 6 meses, enquanto durarem os estoques e com término previsto para 18/12/2026.",
+      "fontes_recuperadas": [
+        "doc_03#02",
+        "doc_01#05",
+        "doc_03#04",
+        "doc_03#03"
+      ],
+      "fontes_citadas": [
+        "doc_01",
+        "doc_03"
+      ],
+      "faithfulness": 0.667,
+      "response_relevancy": 0.726,
+      "context_precision": 1,
+      "context_recall": 0.5
+    },
+    {
+      "id": "P6",
+      "nivel": 2,
+      "pergunta": "Posso levar meu filho de 12 anos para tomar a vacina da dengue na UBS Zona Norte numa terça-feira às 18h?",
+      "resposta": "Não, pois a vacina contra a dengue é aplicada apenas até as 17h, com acolhimento até as 16h30 [doc_03]. Às terças-feiras, no horário estendido das 17h às 20h, a UBS Zona Norte aplica apenas a vacina contra Influenza [doc_03]. O seu filho de 12 anos faz parte do público-alvo para a vacina da dengue, que é permitida para jovens de 10 a 14 anos [doc_03].",
+      "ground_truth": "Não às 18h. Às terças a UBS Zona Norte funciona em horário estendido até as 20h, mas depois das 17h só aplica a vacina da gripe. A vacina da dengue vai até as 17h, com acolhimento até 16h30; o menino de 12 anos está na faixa etária e pode ir mais cedo.",
+      "fontes_recuperadas": [
+        "doc_01#06",
+        "doc_03#05",
+        "doc_03#03",
+        "doc_03#02"
+      ],
+      "fontes_citadas": [
+        "doc_03"
+      ],
+      "faithfulness": 1,
+      "response_relevancy": 0.938,
+      "context_precision": 0.333,
+      "context_recall": 1
+    }
+  ]
+}

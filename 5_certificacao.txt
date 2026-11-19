@@ -1,0 +1,35 @@
+GS 2026.2 — CitizenTech · Certificação da entrega
+Disciplina: Prompt and Artificial Intelligence — Prof. Jorge Luiz Gomes
+
+INTEGRANTE
+Nome: Felipe Macedo
+RM: 570990
+Turma: 1CCPJ
+Modalidade: individual
+Frente: D — Serviço público essencial (vacinação)
+
+LINKS
+Notebook no Colab: https://colab.research.google.com/drive/1vOFQzQajFPIaU3jvA5HX_NiWJh2LYfRL
+  (para o professor abrir, o compartilhamento precisa estar como "Qualquer pessoa com o link: leitor")
+Vídeo de demonstração (YouTube não listado, até 3 min): [PREENCHER — o mesmo link de 7_demo_video_url.txt]
+
+TELA FINAL DA EXECUÇÃO (saída da última célula, execução completa no Colab)
+======================================================================
+GS 2026.2 — CitizenTech · Assistente de Vacinação de Aurora do Vale
+Execução concluída em: 18/11/2026 11:35:07
+Modelo gerador: gemini-3.1-flash-lite | Juiz: gemini-3.1-flash-lite
+Embeddings: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+Base: 4 documentos, 25 chunks, estratégia A (500/80), k = 4
+Testes automatizados: 10 de tools + 34 de guardrails
+RAGAS (média de 6 perguntas): faithfulness = 0.90, response_relevancy = 0.81, context_precision = 0.81, context_recall = 0.86
+Chamadas ao modelo nesta execução: 78
+Arquivo de avaliação: 3_avaliacao_ragas.json
+======================================================================
+O horário acima é o do servidor do Colab (UTC); em Brasília, 08:35 de 18/11/2026.
+Captura da tela: prints/09_conclusao_tela_final.jpg
+
+DECLARAÇÃO
+Declaro que o notebook foi executado do início ao fim no Google Colab (pela IA, a meu pedido, como
+registrado em 6_Chat_Log.txt), que a chave de API não aparece
+em nenhum arquivo desta entrega e que os valores de 3_avaliacao_ragas.json foram medidos por essa execução.
+O ground truth das seis perguntas de avaliação foi elaborado pelo aluno, com base nos documentos da base documental.
